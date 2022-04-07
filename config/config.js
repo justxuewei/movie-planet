@@ -14,7 +14,16 @@ export default defineConfig({
                 {
                     path: "/searchActor",
                     component: "@/pages/searchActor"
-                },{
+                },
+                {
+                    path: "/recommendation",
+                    component: "@/pages/recommendation"
+                },
+                {
+                    path: "/actor",
+                    component: "@/pages/actor"
+                },
+                {
                     path: "/userProfile",
                     component: "@/pages/userProfile"
                 }
