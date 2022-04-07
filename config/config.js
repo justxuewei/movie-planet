@@ -18,6 +18,10 @@ export default defineConfig({
                 {
                     path: "/recommendation",
                     component: "@/pages/recommendation"
+                },
+                {
+                    path: "/actor",
+                    component: "@/pages/actor"
                 }
             ]
         }

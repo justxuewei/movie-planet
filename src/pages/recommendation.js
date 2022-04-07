@@ -10,9 +10,10 @@ import {
     ListItemButton,
     ListItemText,
     ListItem,
-    IconButton
+    IconButton,
 } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete';
+import SlideItemList from "../component/slideItemList";
 
 class WhatToWatch extends React.Component {
     watchlistHandler = (index) => () => {
@@ -23,12 +24,12 @@ class WhatToWatch extends React.Component {
     render() {
         let movie_cards = []
         for (let i = 0; i < this.props.movieList.length; i++) {
-            movie_cards.push(<Card style={{"margin": "10px 0"}}>
+            movie_cards.push(<Card style={{ "margin": "10px 0" }}>
                 <CardMedia
                     component={"img"}
                     height={"200"}
                     image={this.props.movieList[i]['img']}
-                    alt={"picture"}/>
+                    alt={"picture"} />
                 <CardContent>
                     <Typography gutterBottom variant={"h5"} component={"div"}>
                         {this.props.movieList[i]['title']}
@@ -44,7 +45,7 @@ class WhatToWatch extends React.Component {
         }
         return (
             <div>
-                <div style={{"margin": "20px 10px"}}>
+                <div style={{ "margin": "20px 10px" }}>
                     <Typography gutterBottom variant={"h4"} component={"div"}>
                         What To Watch
                     </Typography>
@@ -72,15 +73,15 @@ class Watchlist extends React.Component {
         for (let i = 0; i < this.props.watchlist.length; i++) {
             watchlistItems.push(<ListItem key={i} secondaryAction={
                 <IconButton edge="end" aria-label="delete" onClick={this.deletionHandler(i)}>
-                    <DeleteIcon/>
+                    <DeleteIcon />
                 </IconButton>
             } disablePadding>
-                <ListItemButton><ListItemText primary={this.props.watchlist[i]}/></ListItemButton>
+                <ListItemButton><ListItemText primary={this.props.watchlist[i]} /></ListItemButton>
             </ListItem>)
         }
         return (
             <div>
-                <div style={{"margin": "20px 10px 0 10px"}}>
+                <div style={{ "margin": "20px 10px 0 10px" }}>
                     <Typography gutterBottom variant={"h4"} component={"div"}>
                         Watchlist
                     </Typography>
@@ -88,6 +89,19 @@ class Watchlist extends React.Component {
                 <List>
                     {watchlistItems}
                 </List>
+            </div>
+        )
+    }
+}
+
+class ActorRecommendate extends React.Component {
+    render() {
+        return (
+            <div>
+                <Typography gutterBottom variant={"h4"} component={"div"}>
+                    Actors/Actoress You May Like
+                </Typography>
+                <SlideItemList data={this.props.actorList} url="/actor"></SlideItemList>
             </div>
         )
     }
@@ -120,7 +134,59 @@ class Recommendation extends React.Component {
                     'bio': 'Two former Army Rangers are paired against their will on the road trip of a lifetime. Briggs (Channing Tatum) and Lulu (a Belgian Malinois) race down the Pacific Coast to get to a fellow soldier\'s funeral on time.'
                 },
             ],
-            watchlist: ['Death on the Nile', 'Hawkeye', 'Moon Knight', 'Halo', 'Eternals']
+            watchlist: ['Death on the Nile', 'Hawkeye', 'Moon Knight', 'Halo', 'Eternals'],
+            actorList: [
+                {
+                    title: "Leonardo Wilhelm DiCaprio",
+                    img: "https://upload.wikimedia.org/wikipedia/commons/4/46/Leonardo_Dicaprio_Cannes_2019.jpg",
+                    content: "《This Boy's Life》《Titanic》《Inception》 Leonardo Wilhelm DiCaprio; born November 11, 1974) is an American actor and film producer. Known for his work in biopics and period films, he is the recipient of numerous accolades, including an Academy Award, a British Academy Film Award, and three Golden Globe Awards. As of 2019, his films have grossed over $7.2 billion worldwide, and he has been placed eight times in annual rankings of the world's highest-paid actors.",
+                },
+                {
+                    title: "Robert Downey Jr.",
+                    img: "https://daman.co.id/daman.co.id/wp-content/uploads/2019/10/Robert-Downey-Jr-Glasses-1.jpg",
+                    content: "《Weird Science》《Iron Man》《Sherlock Holmes》 Robert John Downey Jr. (born April 4, 1965) is an American actor and producer. His career has been characterized by critical and popular success in his youth, followed by a period of substance abuse and legal troubles, before a resurgence of commercial success later in his career. In 2008, Downey was titled by Time magazine among the 100 most influential people in the world, and from 2013 to 2015, he was listed by Forbes as Hollywood's highest-paid actor.",
+                },
+                {
+                    title: "Will Smith",
+                    img: "https://upload.wikimedia.org/wikipedia/commons/7/75/Will_Smith_%2832335923807%29.jpg",
+                    content: "《Bad Boys》《Independence Day》《Men in Black》《The Pursuit of Happyness》Willard Carroll Smith II (born September 25, 1968), also known by his stage title The Fresh Prince, is an American actor, rapper, and film producer. Noted for his work in music, television, and film, Smith has received various accolades, including an Academy Award, a British Academy Film Award, a Golden Globe Award, a Screen Actors Guild Award, and four Grammy Awards.",
+                },
+                {
+                    title: "Sylvester Stallone",
+                    img: "https://upload.wikimedia.org/wikipedia/commons/8/84/Sylvester_Stallone_Cannes_2019.jpg",
+                    content: "《Rambo》Sylvester Enzio Stallone (born Michael Sylvester Gardenzio Stallone, July 6, 1946) is an American actor, screenwriter, director, and producer. After his beginnings as a struggling actor for a number of years upon arriving to New York City in 1969 and later Hollywood in 1974, he won his first critical acclaim as an actor for his co-starring role as Stanley Rosiello in The Lords of Flatbush.",
+                },
+                {
+                    title: "Nicolas Cage",
+                    img: "https://upload.wikimedia.org/wikipedia/commons/3/33/Nicolas_Cage_2011_CC.jpg",
+                    content: "《Con Air》《Windtalkers》《Lord of War》Nicolas Kim Coppola (born January 7, 1964), known professionally as Nicolas Cage, is an American actor and filmmaker. Born into the Coppola family, Cage is the recipient of various accolades, including an Academy Award, a Screen Actors Guild Award, and a Golden Globe Award.",
+                },
+                {
+                    title: "Leonardo Wilhelm DiCaprio",
+                    img: "https://upload.wikimedia.org/wikipedia/commons/4/46/Leonardo_Dicaprio_Cannes_2019.jpg",
+                    content: "《This Boy's Life》《Titanic》《Inception》 Leonardo Wilhelm DiCaprio; born November 11, 1974) is an American actor and film producer. Known for his work in biopics and period films, he is the recipient of numerous accolades, including an Academy Award, a British Academy Film Award, and three Golden Globe Awards. As of 2019, his films have grossed over $7.2 billion worldwide, and he has been placed eight times in annual rankings of the world's highest-paid actors.",
+                },
+                {
+                    title: "Robert Downey Jr.",
+                    img: "https://daman.co.id/daman.co.id/wp-content/uploads/2019/10/Robert-Downey-Jr-Glasses-1.jpg",
+                    content: "《Weird Science》《Iron Man》《Sherlock Holmes》 Robert John Downey Jr. (born April 4, 1965) is an American actor and producer. His career has been characterized by critical and popular success in his youth, followed by a period of substance abuse and legal troubles, before a resurgence of commercial success later in his career. In 2008, Downey was titled by Time magazine among the 100 most influential people in the world, and from 2013 to 2015, he was listed by Forbes as Hollywood's highest-paid actor.",
+                },
+                {
+                    title: "Will Smith",
+                    img: "https://upload.wikimedia.org/wikipedia/commons/7/75/Will_Smith_%2832335923807%29.jpg",
+                    content: "《Bad Boys》《Independence Day》《Men in Black》《The Pursuit of Happyness》Willard Carroll Smith II (born September 25, 1968), also known by his stage title The Fresh Prince, is an American actor, rapper, and film producer. Noted for his work in music, television, and film, Smith has received various accolades, including an Academy Award, a British Academy Film Award, a Golden Globe Award, a Screen Actors Guild Award, and four Grammy Awards.",
+                },
+                {
+                    title: "Sylvester Stallone",
+                    img: "https://upload.wikimedia.org/wikipedia/commons/8/84/Sylvester_Stallone_Cannes_2019.jpg",
+                    content: "《Rambo》Sylvester Enzio Stallone (born Michael Sylvester Gardenzio Stallone, July 6, 1946) is an American actor, screenwriter, director, and producer. After his beginnings as a struggling actor for a number of years upon arriving to New York City in 1969 and later Hollywood in 1974, he won his first critical acclaim as an actor for his co-starring role as Stanley Rosiello in The Lords of Flatbush.",
+                },
+                {
+                    title: "Nicolas Cage",
+                    img: "https://upload.wikimedia.org/wikipedia/commons/3/33/Nicolas_Cage_2011_CC.jpg",
+                    content: "《Con Air》《Windtalkers》《Lord of War》Nicolas Kim Coppola (born January 7, 1964), known professionally as Nicolas Cage, is an American actor and filmmaker. Born into the Coppola family, Cage is the recipient of various accolades, including an Academy Award, a Screen Actors Guild Award, and a Golden Globe Award.",
+                },
+            ]
         }
 
         this.setWatchlist = this.setWatchlist.bind(this)
@@ -132,10 +198,11 @@ class Recommendation extends React.Component {
                 <WhatToWatch
                     setWatchlist={this.setWatchlist}
                     watchlist={this.state.watchlist}
-                    movieList={this.state.movieList}/>
+                    movieList={this.state.movieList} />
                 {/*// people you may like*/}
                 {/*// watch list*/}
-                <Watchlist setWatchlist={this.setWatchlist} watchlist={this.state.watchlist}/>
+                <Watchlist setWatchlist={this.setWatchlist} watchlist={this.state.watchlist} />
+                <ActorRecommendate actorList={this.state.actorList} />
             </div>
         )
     }
