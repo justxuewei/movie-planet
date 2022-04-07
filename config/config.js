@@ -22,6 +22,10 @@ export default defineConfig({
                 {
                     path: "/actor",
                     component: "@/pages/actor"
+                },
+                {
+                    path: "/userProfile",
+                    component: "@/pages/userProfile"
                 }
             ]
         }
