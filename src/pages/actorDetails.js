@@ -1,4 +1,6 @@
 import React from 'react'
+import Box from "@mui/material/Box";
+import {Typography} from "@mui/material";
 
 let actors = {
     'Robert Pattinson': {
@@ -47,6 +49,7 @@ let actors = {
     }
 }
 
+// noinspection DuplicatedCode
 class ActorDetails extends React.Component {
 
     constructor(props) {
@@ -57,23 +60,31 @@ class ActorDetails extends React.Component {
         }
     }
 
-    getQueryVariable(variable) {
-        var query = window.location.search.substring(1);
-        var vars = query.split("&");
-        for (var i = 0; i<vars.length; i++) {
-                var pair = vars[i].split("=");
-                if(pair[0] == variable){return pair[1];}
-        }
-        return(false);
-     }
-
     render() {
-        <Box>
-             <Box>
-                <img style={{width: "100%"}} src={actors[this.state.actor].image} height={"200"} alt={""}/>
+        let actor = actors[this.state.actor]
+        console.log(actor)
+        return (
+            <Box>
+                <Typography sx={{marginTop: "10px"}} variant="h4">{this.state.actor}</Typography>
+                <Box sx={{marginTop: "10px"}}>
+                    <img style={{width: "100%"}} src={actor.image} alt={""}/>
+                </Box>
+                <Typography sx={{marginTop: "20px"}} variant="h5">Description</Typography>
+                <Typography sx={{marginTop: "10px"}}>{actor.description}</Typography>
             </Box>
+        )
+    }
 
-        </Box>
+    getQueryVariable(variable) {
+        let query = window.location.search.substring(1);
+        let vars = query.split("&");
+        for (let i = 0; i < vars.length; i++) {
+            let pair = vars[i].split("=");
+            if (pair[0] === variable) {
+                return decodeURI(pair[1]);
+            }
+        }
+        return false;
     }
 }
 
