@@ -1,3 +1,10 @@
+// test cases
+// 1. redirect with data
+// 2. images
+// 3. add to watchlist
+// 4. actors
+// 5. share button
+
 let movies = {
     'title': {
         images: ['image-urls'],
@@ -6,6 +13,7 @@ let movies = {
         type: '',
         ratings: '',
         date: '',
+        watchlist: false,
     }
 }
 

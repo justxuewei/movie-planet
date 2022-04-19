@@ -101,7 +101,7 @@ class ActorRecommendate extends React.Component {
                 <Typography gutterBottom variant={"h4"} component={"div"}>
                     Actors/Actoress You May Like
                 </Typography>
-                <SlideItemList data={this.props.actorList} url="/actor"></SlideItemList>
+                <SlideItemList data={this.props.actorList} url="/actor"/>
             </div>
         )
     }
