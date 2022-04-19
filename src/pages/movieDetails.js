@@ -109,18 +109,21 @@ let actors = {
     }
 }
 
-class Metadata extends React.Component {
+class ActorButton extends React.Component {
     constructor(props) {
         super(props);
     }
 
     render() {
+        let separator = ""
+        if (!this.props.isLast) {
+            separator = <span>|</span>
+        }
         return (
-            <div>
-                <div>
-                    <img style={{width: "100%"}} src={this.props.movie['images'][0]} height={"200"} alt={""}/>
-                </div>
-            </div>
+            <Box sx={{display: 'inline-block'}}>
+                <Button>{this.props.actorName}</Button>
+                {separator}
+            </Box>
         )
     }
 }
@@ -130,26 +133,50 @@ class MovieDetails extends React.Component {
         super(props);
 
         this.state = {
-            title: this.getQueryVariable("movie"),
-            movie: movies[this.getQueryVariable("movie")],
+            title: 'The Batman',
         }
     }
 
-    getQueryVariable(variable)
-    {
-       var query = window.location.search.substring(1);
-       var vars = query.split("&");
-       for (var i=0;i<vars.length;i++) {
-               var pair = vars[i].split("=");
-               if(pair[0] == variable){return pair[1];}
-       }
-       return(false);
+    render() {
+        let movie = movies[this.state.title]
+        let actorButtons = []
+        for (let i = 0; i < movie['actors'].length; i++) {
+            actorButtons.push(<ActorButton actorName={movie['actors'][i]} isLast={i === movie['actors'].length - 1}/>)
+        }
+
+        return (
+            <Box>
+                <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                    <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                        This is a success message!
+                    </Alert>
+                </Snackbar>
+                <Box>
+                    <img style={{width: "100%"}} src={movie['images'][0]} height={"200"} alt={""}/>
+                </Box>
+                <Typography sx={{marginTop: "10px"}} variant="h4">{this.state.title}</Typography>
+                <Typography sx={{marginTop: "5px", marginLeft: "5px"}}>Ratings: {movie['ratings']}</Typography>
+                <Typography sx={{marginTop: "5px", marginLeft: "5px"}}>Date: {movie['date']}</Typography>
+                <Typography sx={{marginTop: "5px", marginLeft: "5px"}}>Genres: {movie['type']}</Typography>
+                <Box sx={{marginTop: "5px", marginLeft: "5px"}}>
+                    <Typography>Actors: </Typography>
+                    <Box sx={{marginLeft: "10px"}}>{actorButtons}</Box>
+                </Box>
+                <Button
+                    variant="outlined"
+                    sx={{width: "95%", display: "block", margin: "10px auto 0 auto"}}
+                    onClick={this.addToWatchlistButton}
+                >Add to watchlist</Button>
+                <Button variant="contained" color="success" sx={{width: "95%", display: "block", margin: "10px auto 0 auto"}}>Share with friends</Button>
+
+                <Typography sx={{marginTop: "20px"}} variant="h5">Description</Typography>
+                <Typography sx={{marginTop: "10px"}}>{movie['description']}</Typography>
+            </Box>
+        )
     }
 
-    render() {
-        return (
-            <Metadata title={this.state.title} movie={this.state.movie}/>
-        )
+    addToWatchlistButton = (event) => {
+
     }
 }
 
