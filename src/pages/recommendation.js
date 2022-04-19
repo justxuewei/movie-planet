@@ -14,6 +14,7 @@ import {
 } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete';
 import SlideItemList from "../component/slideItemList";
+import {history} from "umi";
 
 class WhatToWatch extends React.Component {
     watchlistHandler = (index) => () => {
@@ -24,12 +25,15 @@ class WhatToWatch extends React.Component {
     render() {
         let movie_cards = []
         for (let i = 0; i < this.props.movieList.length; i++) {
-            movie_cards.push(<Card style={{ "margin": "10px 0" }}>
+            movie_cards.push(<Card onClick={(event) => {
+                history.push('/movieDetails?movie='+this.props.movieList[i]['title'])
+            }} style={{"margin": "10px 0"}}>
                 <CardMedia
                     component={"img"}
                     height={"200"}
                     image={this.props.movieList[i]['img']}
-                    alt={"picture"} />
+                    alt={"picture"}
+                />
                 <CardContent>
                     <Typography gutterBottom variant={"h5"} component={"div"}>
                         {this.props.movieList[i]['title']}
@@ -45,7 +49,7 @@ class WhatToWatch extends React.Component {
         }
         return (
             <div>
-                <div style={{ "margin": "20px 10px" }}>
+                <div style={{"margin": "20px 10px"}}>
                     <Typography gutterBottom variant={"h4"} component={"div"}>
                         What To Watch
                     </Typography>
@@ -73,15 +77,15 @@ class Watchlist extends React.Component {
         for (let i = 0; i < this.props.watchlist.length; i++) {
             watchlistItems.push(<ListItem key={i} secondaryAction={
                 <IconButton edge="end" aria-label="delete" onClick={this.deletionHandler(i)}>
-                    <DeleteIcon />
+                    <DeleteIcon/>
                 </IconButton>
             } disablePadding>
-                <ListItemButton><ListItemText primary={this.props.watchlist[i]} /></ListItemButton>
+                <ListItemButton><ListItemText primary={this.props.watchlist[i]}/></ListItemButton>
             </ListItem>)
         }
         return (
             <div>
-                <div style={{ "margin": "20px 10px 0 10px" }}>
+                <div style={{"margin": "20px 10px 0 10px"}}>
                     <Typography gutterBottom variant={"h4"} component={"div"}>
                         Watchlist
                     </Typography>
@@ -101,7 +105,7 @@ class ActorRecommendate extends React.Component {
                 <Typography gutterBottom variant={"h4"} component={"div"}>
                     Actors/Actoress You May Like
                 </Typography>
-                <SlideItemList data={this.props.actorList} url="/actor"></SlideItemList>
+                <SlideItemList data={this.props.actorList} url="/actor"/>
             </div>
         )
     }
@@ -198,11 +202,11 @@ class Recommendation extends React.Component {
                 <WhatToWatch
                     setWatchlist={this.setWatchlist}
                     watchlist={this.state.watchlist}
-                    movieList={this.state.movieList} />
+                    movieList={this.state.movieList}/>
                 {/*// people you may like*/}
                 {/*// watch list*/}
-                <Watchlist setWatchlist={this.setWatchlist} watchlist={this.state.watchlist} />
-                <ActorRecommendate actorList={this.state.actorList} />
+                <Watchlist setWatchlist={this.setWatchlist} watchlist={this.state.watchlist}/>
+                <ActorRecommendate actorList={this.state.actorList}/>
             </div>
         )
     }
