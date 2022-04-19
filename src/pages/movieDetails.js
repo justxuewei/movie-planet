@@ -1,4 +1,7 @@
 import React from "react";
+import Box from "@mui/material/Box";
+import {Alert, Snackbar, Typography} from "@mui/material";
+import Button from "@mui/material/Button";
 
 // test cases
 // 1. redirect with data
@@ -140,24 +143,24 @@ class MovieDetails extends React.Component {
     render() {
         let movie = movies[this.state.title]
         let actorButtons = []
-        for (let i = 0; i < movie['actors'].length; i++) {
-            actorButtons.push(<ActorButton actorName={movie['actors'][i]} isLast={i === movie['actors'].length - 1}/>)
+        for (let i = 0; i < movie.actors.length; i++) {
+            actorButtons.push(<ActorButton actorName={movie.actors[i]} isLast={i === movie.actors.length - 1}/>)
         }
 
         return (
             <Box>
-                <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                    <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-                        This is a success message!
-                    </Alert>
-                </Snackbar>
+                {/*<Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>*/}
+                {/*    <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>*/}
+                {/*        This is a success message!*/}
+                {/*    </Alert>*/}
+                {/*</Snackbar>*/}
                 <Box>
                     <img style={{width: "100%"}} src={movie['images'][0]} height={"200"} alt={""}/>
                 </Box>
                 <Typography sx={{marginTop: "10px"}} variant="h4">{this.state.title}</Typography>
-                <Typography sx={{marginTop: "5px", marginLeft: "5px"}}>Ratings: {movie['ratings']}</Typography>
-                <Typography sx={{marginTop: "5px", marginLeft: "5px"}}>Date: {movie['date']}</Typography>
-                <Typography sx={{marginTop: "5px", marginLeft: "5px"}}>Genres: {movie['type']}</Typography>
+                <Typography sx={{marginTop: "5px", marginLeft: "5px"}}>Ratings: {movie.ratings}</Typography>
+                <Typography sx={{marginTop: "5px", marginLeft: "5px"}}>Date: {movie.date}</Typography>
+                <Typography sx={{marginTop: "5px", marginLeft: "5px"}}>Genres: {movie.type}</Typography>
                 <Box sx={{marginTop: "5px", marginLeft: "5px"}}>
                     <Typography>Actors: </Typography>
                     <Box sx={{marginLeft: "10px"}}>{actorButtons}</Box>
@@ -170,7 +173,7 @@ class MovieDetails extends React.Component {
                 <Button variant="contained" color="success" sx={{width: "95%", display: "block", margin: "10px auto 0 auto"}}>Share with friends</Button>
 
                 <Typography sx={{marginTop: "20px"}} variant="h5">Description</Typography>
-                <Typography sx={{marginTop: "10px"}}>{movie['description']}</Typography>
+                <Typography sx={{marginTop: "10px"}}>{movie.description}</Typography>
             </Box>
         )
     }

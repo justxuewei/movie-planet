@@ -30,6 +30,10 @@ export default defineConfig({
                 {
                     path: "/movieDetails",
                     component: "@/pages/movieDetails"
+                },
+                {
+                    path: "/actorDetails",
+                    component: "@/pages/actorDetails"
                 }
             ]
         }
