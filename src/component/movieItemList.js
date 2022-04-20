@@ -119,7 +119,6 @@ class VirtualizedList extends React.Component {
                     itemData={this.state.data}
                     itemCount={this.state.count}
                     overscanCount={5}
-                // data = {5}
                 >
                     {renderRow}
                 </FixedSizeList>
