@@ -165,7 +165,7 @@ class MovieDetails extends React.Component {
     }
 
     shareWithFriendsButton = (event) => {
-        console.log("share with friends")
+        history.push('/sharingPage?movie=' + this.state.title)
     }
 }
 
