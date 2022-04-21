@@ -34,6 +34,10 @@ export default defineConfig({
                 {
                     path: "/actorDetails",
                     component: "@/pages/actorDetails"
+                },
+                {
+                    path: "/sharingPage",
+                    component: "@/pages/sharingPage"
                 }
             ]
         }
