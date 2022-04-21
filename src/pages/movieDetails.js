@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import {Alert, Snackbar, Typography} from "@mui/material";
 import Button from "@mui/material/Button";
 import {history} from 'umi'
+import getQueryVariable from '../modules/getQueryVar'
 
 let movies = {
     'The Batman': {
@@ -13,7 +14,7 @@ let movies = {
             'https://m.media-amazon.com/images/M/MV5BOTc3ODFlMWYtZDJjNC00ZGQyLTk5MWQtNzliNWMzOWVlM2FlXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_FMjpg_UX1280_.jpg'],
         actors: ['Robert Pattinson', "Zoe Kravitz", "Jeffrey Wright"],
         description: "When the Riddler, a sadistic serial killer, begins murdering key political figures in Gotham, Batman is forced to investigate the city's hidden corruption and question his family's involvement.",
-        type: 'Action, Crime, Drama',
+        type: ['action', 'crime', 'drama'],
         ratings: '8.2/10',
         date: '2022',
         watchlist: false,
@@ -26,7 +27,7 @@ let movies = {
             'https://m.media-amazon.com/images/M/MV5BZGI5NTFkZDctZmEzYi00MTM4LTlmYTItYmFmYjRiNDQ5NGI0XkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_FMjpg_UX1280_.jpg'],
         actors: ['Tom Holland', "Zoe Kravitz", "Antonio Banderas"],
         description: "Street-smart Nathan Drake is recruited by seasoned treasure hunter Victor Sully Sullivan to recover a fortune amassed by Ferdinand Magellan, and lost 500 years ago by the House of Moncada.",
-        type: 'Action, Adventure',
+        type: ['action', 'adventure'],
         ratings: '6.6/10',
         date: '2022',
         watchlist: false,
@@ -39,7 +40,7 @@ let movies = {
             'https://m.media-amazon.com/images/M/MV5BODhiNDJmMDUtZDk5MS00OTZiLWE0YWMtYTY2Yzc5OTQyZGM4XkEyXkFqcGdeQXVyMTMwMjIzNTk3._V1_.jpg'],
         actors: ['Tom Holland', "Zendaya", "Benedict Cumberbatch"],
         description: "Street-smart Nathan Drake is recruited by seasoned treasure hunter Victor Sully Sullivan to recover a fortune amassed by Ferdinand Magellan, and lost 500 years ago by the House of Moncada.",
-        type: 'Action, Adventure, Fantasy',
+        type: ['action', 'adventure', 'fantasy'],
         ratings: '8.4/10',
         date: '2021',
         watchlist: false,
@@ -52,7 +53,7 @@ let movies = {
             'https://m.media-amazon.com/images/M/MV5BZjY3OWU5ZGItOGQ0Mi00MGMzLWJkNmQtOTVkMWMwNTI1YTNlXkEyXkFqcGdeQXVyMzExODEzNDA@._V1_FMjpg_UX620_.jpg'],
         actors: ['Channing Tatum', "Ryder McLaughlin", "Aavi Haas"],
         description: "Street-smart Nathan Drake is recruited by seasoned treasure hunter Victor Sully Sullivan to recover a fortune amassed by Ferdinand Magellan, and lost 500 years ago by the House of Moncada.",
-        type: 'Comedy',
+        type: ['drama', 'comedy', 'western'],
         ratings: '6.6/10',
         date: '2022',
         watchlist: false,
@@ -88,23 +89,11 @@ class MovieDetails extends React.Component {
         super(props);
 
         this.state = {
-            title: this.getQueryVariable("movie"),
+            title: getQueryVariable("movie"),
             openAlert: false
         }
 
         console.log(this.state)
-    }
-
-    getQueryVariable(variable) {
-        let query = window.location.search.substring(1);
-        let vars = query.split("&");
-        for (let i = 0; i < vars.length; i++) {
-            let pair = vars[i].split("=");
-            if (pair[0] === variable) {
-                return decodeURI(pair[1]);
-            }
-        }
-        return false;
     }
 
     render() {
@@ -131,7 +120,9 @@ class MovieDetails extends React.Component {
                 <Typography sx={{marginTop: "10px"}} variant="h4">{this.state.title}</Typography>
                 <Typography sx={{marginTop: "5px", marginLeft: "5px"}}>Ratings: {movie.ratings}</Typography>
                 <Typography sx={{marginTop: "5px", marginLeft: "5px"}}>Date: {movie.date}</Typography>
-                <Typography sx={{marginTop: "5px", marginLeft: "5px"}}>Genres: {movie.type}</Typography>
+                <Typography sx={{marginTop: "5px", marginLeft: "5px"}}>
+                    Genres: { movie.type.map(t => <span><a href={`/category?cat=${t}`}>{t}</a> &nbsp;&nbsp; </span> ) }
+                </Typography>
                 <Box sx={{marginTop: "5px", marginLeft: "5px"}}>
                     <Typography>Actors: </Typography>
                     <Box sx={{marginLeft: "10px"}}>{actorButtons}</Box>

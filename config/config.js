@@ -38,6 +38,10 @@ export default defineConfig({
                 {
                     path: "/sharingPage",
                     component: "@/pages/sharingPage"
+                },
+                {
+                    path: "/category",
+                    component: "@/pages/category"
                 }
             ]
         }

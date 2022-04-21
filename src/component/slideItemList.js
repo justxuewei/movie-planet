@@ -14,7 +14,7 @@ class SlideItemList extends React.Component {
                 {
                     this.props.data.map((item, idx) => {
                         return (
-                            <a href={this.props.url}>
+                            <a href={'url' in item ? item.url:this.props.url}>
                                 <Card sx={{ width: 250 }} key={idx}>
                                     <CardActionArea>
                                         <CardMedia
