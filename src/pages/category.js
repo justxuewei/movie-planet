@@ -1,6 +1,7 @@
 import React from 'react'
 import {
     Typography,
+    Button
 } from '@mui/material'
 
 import SlideItemList from "../component/slideItemList";
@@ -74,12 +75,13 @@ class Category extends React.Component {
                         console.log('cat',cat)
                         return (
                             <div key={i}>
-                                <Typography gutterBottom variant={"h4"} component={"div"}>{cat.toUpperCase()}</Typography>
+                                <a href={`/category?cat=${cat}`} style={{textDecoration:'none', color:'black'}}><Typography gutterBottom variant={"h4"} component={"div"}>{cat.toUpperCase()}</Typography></a>
                                 <SlideItemList data={movies}></SlideItemList>
                             </div>
                         )
                     })
                 }
+                <a href="/category" style={{textDecoration: 'none', color: 'black'}}><Button variant="contained" size="small">All Categories</Button></a>
             </div>
         )
     }
