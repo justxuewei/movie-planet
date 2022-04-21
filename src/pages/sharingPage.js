@@ -205,7 +205,7 @@ class sharingPage extends React.Component {
                     <CardMedia
                         component="img"
                         height="250"
-                        image="https://m.media-amazon.com/images/M/MV5BZTE2YTY3YTMtM2FlMS00YmI3LTgyMWUtM2FhMWIyZWRmMDk5XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_FMjpg_UY720_.jpg"
+                        image={movies[this.state.title].images[0]}
                         alt="Paella dish"
                     />
                     {/* 内容部分 */}
