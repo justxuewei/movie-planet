@@ -144,51 +144,61 @@ class Recommendation extends React.Component {
                     title: "Leonardo Wilhelm DiCaprio",
                     img: "https://upload.wikimedia.org/wikipedia/commons/4/46/Leonardo_Dicaprio_Cannes_2019.jpg",
                     content: "《This Boy's Life》《Titanic》《Inception》 Leonardo Wilhelm DiCaprio; born November 11, 1974) is an American actor and film producer. Known for his work in biopics and period films, he is the recipient of numerous accolades, including an Academy Award, a British Academy Film Award, and three Golden Globe Awards. As of 2019, his films have grossed over $7.2 billion worldwide, and he has been placed eight times in annual rankings of the world's highest-paid actors.",
+                    url: "/actorDetails?actor=Leonardo Wilhelm DiCaprio"
                 },
                 {
                     title: "Robert Downey Jr.",
                     img: "https://daman.co.id/daman.co.id/wp-content/uploads/2019/10/Robert-Downey-Jr-Glasses-1.jpg",
                     content: "《Weird Science》《Iron Man》《Sherlock Holmes》 Robert John Downey Jr. (born April 4, 1965) is an American actor and producer. His career has been characterized by critical and popular success in his youth, followed by a period of substance abuse and legal troubles, before a resurgence of commercial success later in his career. In 2008, Downey was titled by Time magazine among the 100 most influential people in the world, and from 2013 to 2015, he was listed by Forbes as Hollywood's highest-paid actor.",
+                    url: "/actorDetails?actor=Robert Downey Jr."
                 },
                 {
                     title: "Will Smith",
                     img: "https://upload.wikimedia.org/wikipedia/commons/7/75/Will_Smith_%2832335923807%29.jpg",
                     content: "《Bad Boys》《Independence Day》《Men in Black》《The Pursuit of Happyness》Willard Carroll Smith II (born September 25, 1968), also known by his stage title The Fresh Prince, is an American actor, rapper, and film producer. Noted for his work in music, television, and film, Smith has received various accolades, including an Academy Award, a British Academy Film Award, a Golden Globe Award, a Screen Actors Guild Award, and four Grammy Awards.",
+                    url: "/actorDetails?actor=Will Smith"
                 },
                 {
                     title: "Sylvester Stallone",
                     img: "https://upload.wikimedia.org/wikipedia/commons/8/84/Sylvester_Stallone_Cannes_2019.jpg",
                     content: "《Rambo》Sylvester Enzio Stallone (born Michael Sylvester Gardenzio Stallone, July 6, 1946) is an American actor, screenwriter, director, and producer. After his beginnings as a struggling actor for a number of years upon arriving to New York City in 1969 and later Hollywood in 1974, he won his first critical acclaim as an actor for his co-starring role as Stanley Rosiello in The Lords of Flatbush.",
+                    url: "/actorDetails?actor=Sylvester Stallone"
                 },
                 {
                     title: "Nicolas Cage",
                     img: "https://upload.wikimedia.org/wikipedia/commons/3/33/Nicolas_Cage_2011_CC.jpg",
                     content: "《Con Air》《Windtalkers》《Lord of War》Nicolas Kim Coppola (born January 7, 1964), known professionally as Nicolas Cage, is an American actor and filmmaker. Born into the Coppola family, Cage is the recipient of various accolades, including an Academy Award, a Screen Actors Guild Award, and a Golden Globe Award.",
+                    url: "/actorDetails?actor=Nicolas Cage"
                 },
                 {
                     title: "Leonardo Wilhelm DiCaprio",
                     img: "https://upload.wikimedia.org/wikipedia/commons/4/46/Leonardo_Dicaprio_Cannes_2019.jpg",
                     content: "《This Boy's Life》《Titanic》《Inception》 Leonardo Wilhelm DiCaprio; born November 11, 1974) is an American actor and film producer. Known for his work in biopics and period films, he is the recipient of numerous accolades, including an Academy Award, a British Academy Film Award, and three Golden Globe Awards. As of 2019, his films have grossed over $7.2 billion worldwide, and he has been placed eight times in annual rankings of the world's highest-paid actors.",
+                    url: "/actorDetails?actor=Leonardo Wilhelm DiCaprio"
                 },
                 {
                     title: "Robert Downey Jr.",
                     img: "https://daman.co.id/daman.co.id/wp-content/uploads/2019/10/Robert-Downey-Jr-Glasses-1.jpg",
                     content: "《Weird Science》《Iron Man》《Sherlock Holmes》 Robert John Downey Jr. (born April 4, 1965) is an American actor and producer. His career has been characterized by critical and popular success in his youth, followed by a period of substance abuse and legal troubles, before a resurgence of commercial success later in his career. In 2008, Downey was titled by Time magazine among the 100 most influential people in the world, and from 2013 to 2015, he was listed by Forbes as Hollywood's highest-paid actor.",
+                    url: "/actorDetails?actor=Robert Downey Jr."
                 },
                 {
                     title: "Will Smith",
                     img: "https://upload.wikimedia.org/wikipedia/commons/7/75/Will_Smith_%2832335923807%29.jpg",
                     content: "《Bad Boys》《Independence Day》《Men in Black》《The Pursuit of Happyness》Willard Carroll Smith II (born September 25, 1968), also known by his stage title The Fresh Prince, is an American actor, rapper, and film producer. Noted for his work in music, television, and film, Smith has received various accolades, including an Academy Award, a British Academy Film Award, a Golden Globe Award, a Screen Actors Guild Award, and four Grammy Awards.",
+                    url: "/actorDetails?actor=Will Smith"
                 },
                 {
                     title: "Sylvester Stallone",
                     img: "https://upload.wikimedia.org/wikipedia/commons/8/84/Sylvester_Stallone_Cannes_2019.jpg",
                     content: "《Rambo》Sylvester Enzio Stallone (born Michael Sylvester Gardenzio Stallone, July 6, 1946) is an American actor, screenwriter, director, and producer. After his beginnings as a struggling actor for a number of years upon arriving to New York City in 1969 and later Hollywood in 1974, he won his first critical acclaim as an actor for his co-starring role as Stanley Rosiello in The Lords of Flatbush.",
+                    url: "/actorDetails?actor=Sylvester Stallone"
                 },
                 {
                     title: "Nicolas Cage",
                     img: "https://upload.wikimedia.org/wikipedia/commons/3/33/Nicolas_Cage_2011_CC.jpg",
                     content: "《Con Air》《Windtalkers》《Lord of War》Nicolas Kim Coppola (born January 7, 1964), known professionally as Nicolas Cage, is an American actor and filmmaker. Born into the Coppola family, Cage is the recipient of various accolades, including an Academy Award, a Screen Actors Guild Award, and a Golden Globe Award.",
+                    url: "/actorDetails?actor=Nicolas Cage"
                 },
             ]
         }
