@@ -1,8 +1,14 @@
 import React from 'react'
-import Box from "@mui/material/Box";
-import {Typography} from "@mui/material";
-import Button from "@mui/material/Button";
 import {history} from "umi";
+import { FixedSizeList } from 'react-window';
+import { Alert, Dialog, Modal, DialogTitle, DialogContent, DialogContentText, DialogActions, Box, InputAdornment, TextField, Button, Snackbar, Rating, Card, CardHeader, CardMedia, IconButton, CardContent, Typography, CardActions, ExpandMore } from "@mui/material";
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import Avatar from '@mui/material/Avatar';
+import ShareIcon from '@mui/icons-material/Share';
+import MessageIcon from '@mui/icons-material/Message';
 
 let actors = {
     'Robert Pattinson': {
@@ -14,7 +20,14 @@ let actors = {
         knownFor: ["X-Men (2000)", "Femme Fatale (2002)", "X2 (2003)"],
         alternateNames: ["Rebecca Romijn-Stamos", "Rebecca Romijn Stamos"],
         height: "5' 11\" (1.8 m)",
-        spouse: "Jerry O'Connell"
+        spouse: "Jerry O'Connell",
+        comment: [
+            {
+                name: "1",
+                avator: "https://upload.wikimedia.org/wikipedia/commons/4/46/Leonardo_Dicaprio_Cannes_2019.jpg",
+                content: "I like his movies!"
+            },
+        ],
     },
     'Zoe Kravitz': {
         image: 'https://m.media-amazon.com/images/M/MV5BM2NmMWViOTYtOGJhYi00MzU2LWI5ODYtOGJhYzhkMWViODY5XkEyXkFqcGdeQXVyNjk2NTA3MTc@._V1_UX214_CR0,0,214,317_AL_.jpg',
@@ -25,7 +38,19 @@ let actors = {
         knownFor: ["The Batman", "High Fidelity", "Divergent"],
         alternateNames: [],
         height: "5' 2",
-        spouse: "Karl Glusman"
+        spouse: "Karl Glusman",
+        comment: [
+            {
+                name: "1",
+                avator: "https://upload.wikimedia.org/wikipedia/commons/4/46/Leonardo_Dicaprio_Cannes_2019.jpg",
+                content: "I like his movies!"
+            },
+            {
+                name: "2",
+                avator: "https://upload.wikimedia.org/wikipedia/commons/4/46/Leonardo_Dicaprio_Cannes_2019.jpg",
+                content: "I like his movies!"
+            },
+        ],
     },
     'Jeffrey Wright': {
         image: 'https://m.media-amazon.com/images/M/MV5BMjI1NDYyNzk4OV5BMl5BanBnXkFtZTgwNDAyMzI1MDI@._V1_UY317_CR131,0,214,317_AL_.jpg',
@@ -36,7 +61,14 @@ let actors = {
         knownFor: ["The Batman", "Westworld", "The French Dispatch"],
         alternateNames: [],
         height: "5' 9",
-        spouse: "Carmen Ejogo"
+        spouse: "Carmen Ejogo",
+        comment: [
+            {
+                name: "1",
+                avator: "https://upload.wikimedia.org/wikipedia/commons/4/46/Leonardo_Dicaprio_Cannes_2019.jpg",
+                content: "I like his movies!"
+            },
+        ],
     },
     'Tom Holland': {
         image: 'https://m.media-amazon.com/images/M/MV5BNzZiNTEyNTItYjNhMS00YjI2LWIwMWQtZmYwYTRlNjMyZTJjXkEyXkFqcGdeQXVyMTExNzQzMDE0._V1_UX214_CR0,0,214,317_AL_.jpg',
@@ -47,7 +79,14 @@ let actors = {
         knownFor: ["Spider-Man: Homecoming", "Spider-Man: No Way Home"],
         alternateNames: ["Thomas Stanley Holland"],
         height: "5' 8",
-        spouse: "Unknown"
+        spouse: "Unknown",
+        comment: [
+            {
+                name: "1",
+                avator: "https://upload.wikimedia.org/wikipedia/commons/4/46/Leonardo_Dicaprio_Cannes_2019.jpg",
+                content: "I like his movies!"
+            },
+        ],
     },
     'Mark Wahlberg': {
         image: 'https://m.media-amazon.com/images/M/MV5BMTU0MTQ4OTMyMV5BMl5BanBnXkFtZTcwMTQxOTY1NA@@._V1_UY317_CR14,0,214,317_AL_.jpg',
@@ -58,7 +97,14 @@ let actors = {
         knownFor: ["The Fighter", "Ted", "the Departed"],
         alternateNames: ["Mark Wahlberg"],
         height: "5' 8",
-        spouse: "Jerry O'Connell"
+        spouse: "Jerry O'Connell",
+        comment: [
+            {
+                name: "1",
+                avator: "https://upload.wikimedia.org/wikipedia/commons/4/46/Leonardo_Dicaprio_Cannes_2019.jpg",
+                content: "I like his movies!"
+            },
+        ],
     },
     'Antonio Banderas': {
         image: 'https://m.media-amazon.com/images/M/MV5BMTUyOTQ3NTYyNF5BMl5BanBnXkFtZTcwMTY2NjIzNQ@@._V1_UX214_CR0,0,214,317_AL_.jpg',
@@ -69,7 +115,14 @@ let actors = {
         knownFor: ["Spider-Man: Homecoming", "Spider-Man: No Way Home", "Uncharted"],
         alternateNames: ["Thomas Stanley Holland"],
         height: "5' 8",
-        spouse: "Unknown"
+        spouse: "Unknown",
+        comment: [
+            {
+                name: "1",
+                avator: "https://upload.wikimedia.org/wikipedia/commons/4/46/Leonardo_Dicaprio_Cannes_2019.jpg",
+                content: "I like his movies!"
+            },
+        ],
     },
     'Zendaya': {
         image: 'https://m.media-amazon.com/images/M/MV5BMjAxZTk4NDAtYjI3Mi00OTk3LTg0NDEtNWFlNzE5NDM5MWM1XkEyXkFqcGdeQXVyOTI3MjYwOQ@@._V1_UY317_CR12,0,214,317_AL_.jpg',
@@ -80,7 +133,14 @@ let actors = {
         knownFor: ["Euphoria", "Spider-Man: No Way Home", "Spider-Man: Homecoming"],
         alternateNames: ["Zendaya Maree Stoermer Coleman"],
         height: "5' 7",
-        spouse: "Unknown"
+        spouse: "Unknown",
+        comment: [
+            {
+                name: "1",
+                avator: "https://upload.wikimedia.org/wikipedia/commons/4/46/Leonardo_Dicaprio_Cannes_2019.jpg",
+                content: "I like his movies!"
+            },
+        ],
     },
     'Benedict Cumberbatch': {
         image: 'https://m.media-amazon.com/images/M/MV5BMjE0MDkzMDQwOF5BMl5BanBnXkFtZTgwOTE1Mjg1MzE@._V1_UY317_CR2,0,214,317_AL_.jpg',
@@ -91,7 +151,14 @@ let actors = {
         knownFor: ["Sherlock", "Doctor Strange", "The Power of the Dog"],
         alternateNames: ["Rebecca Romijn-Stamos", "Rebecca Romijn Stamos"],
         height: "6' 0",
-        spouse: "Unknown"
+        spouse: "Unknown",
+        comment: [
+            {
+                name: "1",
+                avator: "https://upload.wikimedia.org/wikipedia/commons/4/46/Leonardo_Dicaprio_Cannes_2019.jpg",
+                content: "I like his movies!"
+            },
+        ],
     },
     'Channing Tatum': {
         image: 'https://m.media-amazon.com/images/M/MV5BMTUyOTc2NTEwNV5BMl5BanBnXkFtZTgwNDgxMjMxNjE@._V1_UY317_CR59,0,214,317_AL_.jpg',
@@ -102,7 +169,14 @@ let actors = {
         knownFor: ["21 Jump Street", "White House Down", "Foxcatcher"],
         alternateNames: ["Channing Matthew Tatum"],
         height: "6' 1",
-        spouse: "Sophie Hunter"
+        spouse: "Sophie Hunter",
+        comment: [
+            {
+                name: "1",
+                avator: "https://upload.wikimedia.org/wikipedia/commons/4/46/Leonardo_Dicaprio_Cannes_2019.jpg",
+                content: "I like his movies!"
+            },
+        ],
     },
     'Ryder McLaughlin': {
         image: 'https://m.media-amazon.com/images/M/MV5BMjM0NDE5MzAwOV5BMl5BanBnXkFtZTgwNzYwNjAzNjM@._V1_UX214_CR0,0,214,317_AL_.jpg',
@@ -113,7 +187,14 @@ let actors = {
         knownFor: ["Mid90s", "Dog", "Godspeed"],
         alternateNames: ["Ryder McLaughlin"],
         height: "6' 1",
-        spouse: "Unknown"
+        spouse: "Unknown",
+        comment: [
+            {
+                name: "1",
+                avator: "https://upload.wikimedia.org/wikipedia/commons/4/46/Leonardo_Dicaprio_Cannes_2019.jpg",
+                content: "I like his movies!"
+            },
+        ],
     },
     'Aavi Haas': {
         image: 'https://m.media-amazon.com/images/M/MV5BNTY2ODcyMTItZDVjMi00OGRlLTgwZTMtZThjN2YwNGUxMDU0XkEyXkFqcGdeQXVyNjA3NDA3OTg@._V1_UX214_CR0,0,214,317_AL_.jpg',
@@ -124,7 +205,14 @@ let actors = {
         knownFor: ["Now Apocalypse (2019)", "Red Oaks (2014)", "Logan Lucky"],
         alternateNames: ["Aavi Haas"],
         height: "5' 7",
-        spouse: "Unknown"
+        spouse: "Unknown",
+        comment: [
+            {
+                name: "1",
+                avator: "https://upload.wikimedia.org/wikipedia/commons/4/46/Leonardo_Dicaprio_Cannes_2019.jpg",
+                content: "I like his movies!"
+            },
+        ],
     },
     'Leonardo Wilhelm DiCaprio': {
         image: 'https://m.media-amazon.com/images/M/MV5BMjI0MTg3MzI0M15BMl5BanBnXkFtZTcwMzQyODU2Mw@@._V1_UY317_CR10,0,214,317_AL_.jpg',
@@ -135,7 +223,14 @@ let actors = {
         knownFor: ["Inception", "Titanic", "The Departed"],
         alternateNames: ["Leonardo DiCaprio"],
         height: "6' 0",
-        spouse: "Camila Morrone"
+        spouse: "Camila Morrone",
+        comment: [
+            {
+                name: "1",
+                avator: "https://upload.wikimedia.org/wikipedia/commons/4/46/Leonardo_Dicaprio_Cannes_2019.jpg",
+                content: "I like his movies!"
+            },
+        ],
     },
     'Robert Downey Jr.': {
         image: 'https://m.media-amazon.com/images/M/MV5BNzg1MTUyNDYxOF5BMl5BanBnXkFtZTgwNTQ4MTE2MjE@._V1_UX214_CR0,0,214,317_AL_.jpg',
@@ -146,7 +241,14 @@ let actors = {
         knownFor: ["Iron Man", "Avengers", "Sherlock Holmes"],
         alternateNames: ["Robert John Downey Jr."],
         height: "5' 8",
-        spouse: "Susan Downey"
+        spouse: "Susan Downey",
+        comment: [
+            {
+                name: "1",
+                avator: "https://upload.wikimedia.org/wikipedia/commons/4/46/Leonardo_Dicaprio_Cannes_2019.jpg",
+                content: "I like his movies!"
+            },
+        ],
     },
     'Will Smith': {
         image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Will_Smith_at_the_close_of_the_2018_Soccer_World_Cup.jpg/440px-Will_Smith_at_the_close_of_the_2018_Soccer_World_Cup.jpg',
@@ -157,7 +259,14 @@ let actors = {
         knownFor: ["The Fresh Prince of Bel-Air", "King Richard", "I Am Legend"],
         alternateNames: ["Rebecca Romijn-Stamos", "Rebecca Romijn Stamos"],
         height: "6' 2",
-        spouse: "Jada Pinkett Smith"
+        spouse: "Jada Pinkett Smith",
+        comment: [
+            {
+                name: "1",
+                avator: "https://upload.wikimedia.org/wikipedia/commons/4/46/Leonardo_Dicaprio_Cannes_2019.jpg",
+                content: "I like his movies!"
+            },
+        ],
     },
     'Nicolas Cage': {
         image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Nicolas_Cage_2011_CC.jpg/340px-Nicolas_Cage_2011_CC.jpg',
@@ -168,7 +277,14 @@ let actors = {
         knownFor: ["Ghost Rider", "Pig (2021)","National Treasure (2004)"],
         alternateNames: ["Nicolas Kim Coppola"],
         height: "5' 11",
-        spouse: "Riko Shibata"
+        spouse: "Riko Shibata",
+        comment: [
+            {
+                name: "1",
+                avator: "https://upload.wikimedia.org/wikipedia/commons/4/46/Leonardo_Dicaprio_Cannes_2019.jpg",
+                content: "I like his movies!"
+            },
+        ],
     },
     'Sylvester Stallone': {
         image: 'https://m.media-amazon.com/images/M/MV5BMTQwMTk3NDU2OV5BMl5BanBnXkFtZTcwNTA3MTI0Mw@@._V1_UY317_CR6,0,214,317_AL_.jpg',
@@ -179,8 +295,37 @@ let actors = {
         knownFor: ["Rocky", "Creed", "First Blood"],
         alternateNames: ["Sylvester Stallone"],
         height: "5' 10",
-        spouse: "Jerry O'Connell"
+        spouse: "Jerry O'Connell",
+        comment: [
+            {
+                name: "1",
+                avator: "https://upload.wikimedia.org/wikipedia/commons/4/46/Leonardo_Dicaprio_Cannes_2019.jpg",
+                content: "I like his movies!"
+            },
+        ],
     }
+}
+
+function renderRow(props) {
+    console.log(props)
+    const { index, style, data } = props;
+    return (
+        <div>
+            <ListItem style={style} key={index} component="div" >
+                <ListItemAvatar>
+                    <Avatar alt="" src={data[index].avator} />
+                </ListItemAvatar>
+                <ListItemText
+                    primary={data[index].name}
+                    secondary={
+                        <React.Fragment>
+                            {data[index].content}
+                        </React.Fragment>
+                    }
+                />
+            </ListItem></div>
+
+    );
 }
 
 // noinspection DuplicatedCode
@@ -191,32 +336,155 @@ class ActorDetails extends React.Component {
 
         this.state = {
             actor: this.getQueryVariable("actor"),
+            actors: actors
         }
+    }
+
+    state = {
+        name: "",
+        content: "",
+        actor: 'Robert Pattinson',
+        value: 4,
+        alterText: "alter",
+        openAlert: false,
+        openDialog: false,
     }
 
     render() {
         let actor = actors[this.state.actor]
+        console.log(this.state.actors[this.state.actor].comment)
         return (
-            <Box>
-                <Typography sx={{marginTop: "10px"}} variant="h4">{this.state.actor}</Typography>
-                <Box sx={{marginTop: "10px"}}>
-                    <img style={{width: "100%", height: "300px", objectFit: "cover"}} src={actor.image} alt={""}/>
+                <Box>
+                    <Typography sx={{marginTop: "10px"}} variant="h4">{this.state.actor}</Typography>
+                    <Box sx={{marginTop: "10px"}}>
+                        <img style={{width: "100%", height: "300px", objectFit: "cover"}} src={actor.image} alt={""}/>
+                    </Box>
+                    <Typography sx={{marginTop: "5px", marginLeft: "5px"}}><b>Born:</b> {actor.bornDate}</Typography>
+                    <Typography sx={{marginTop: "5px", marginLeft: "5px"}}><b>Place:</b> {actor.bornPlace}</Typography>
+                    <Typography sx={{marginTop: "5px", marginLeft: "5px"}}><b>Known For:</b> {actor.knownFor.join(' | ')}</Typography>
+                    <Typography sx={{marginTop: "5px", marginLeft: "5px"}}><b>Alternate Names:</b> {actor.alternateNames.join(' | ')}</Typography>
+                    <Typography sx={{marginTop: "5px", marginLeft: "5px"}}><b>Height:</b> {actor.height}</Typography>
+                    <Typography sx={{marginTop: "5px", marginLeft: "5px"}}><b>Spouse:</b> {actor.spouse}</Typography>
+
+                    <Button variant="contained" color="success"
+                            sx={{width: "95%", display: "block", margin: "10px auto 0 auto"}}
+                            onClick={this.shareWithFriendsButton}
+                    >Share with friends</Button>
+
+                    <Typography sx={{marginTop: "20px"}} variant="h5">Description</Typography>
+                    <Typography sx={{marginTop: "10px"}}>{actor.description}</Typography>
+                    {/* 用户评论 */}
+                    <Snackbar
+                        open={this.state.openAlert}
+                        onClose={this.closeAlert}
+                        autoHideDuration={5000}
+                        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
+                        <Alert severity="success" onClose={this.closeAlert} sx={{ width: '100%' }}>
+                            {this.state.alterText}
+                        </Alert>
+                    </Snackbar>
+                    <CardActions disableSpacing>
+                        <IconButton
+                            aria-label="add to favorites"
+                            onClick={this.addToFavorites}
+                        >
+                            <FavoriteIcon />
+                        </IconButton>
+                        <IconButton
+                            aria-label="comment"
+                            onClick={this.openDialog}
+                        >
+                            <MessageIcon />
+                        </IconButton>
+
+
+
+                        <IconButton aria-label="add to favorites">
+
+                        </IconButton>
+                        <IconButton aria-label="add to favorites">
+
+                        </IconButton>
+                        <IconButton aria-label="add to favorites">
+
+                        </IconButton>
+                        <IconButton aria-label="add to favorites">
+
+                        </IconButton>
+                        <IconButton aria-label="add to favorites">
+
+                        </IconButton>
+                        <IconButton aria-label="add to favorites">
+
+                        </IconButton>
+                        <IconButton aria-label="add to favorites">
+
+                        </IconButton>
+                        <IconButton aria-label="add to favorites">
+
+                        </IconButton>
+                        <IconButton aria-label="add to favorites">
+
+                        </IconButton>
+                        <Rating
+                            name="simple-controlled"
+                            value={this.state.value}
+                            onChange={(event, newValue) => {
+                                this.setState({
+                                    value: newValue
+                                })
+                            }}
+                        />
+
+
+                    </CardActions>
+                    <Box sx={{ width: "100%" }}>
+                        <FixedSizeList
+                            height={600}
+                            width={400}
+                            itemSize={90}
+                            itemData={this.state.actors[this.state.actor].comment}
+                            itemCount={this.state.actors[this.state.actor].comment.length}
+                            overscanCount={10}>
+                            {renderRow}
+                        </FixedSizeList>
+                    </Box>
+                    <Box sx={{ width: "100%" }}>
+                    <Dialog open={this.state.openDialog} onClose={this.closeDialog}>
+                        <DialogTitle>Add Comment</DialogTitle>
+                        <DialogContent>
+                            <DialogContentText>
+                                You can post your comment of the movie
+                            </DialogContentText>
+                            <TextField
+                                autoFocus
+                                margin="dense"
+                                id="name"
+                                label="Your name"
+                                type="email"
+                                fullWidth
+                                variant="standard"
+                                onChange={this.changeName}
+                            />
+                            <TextField
+                                autoFocus
+                                margin="dense"
+                                id="content"
+                                label="content"
+                                type="email"
+                                fullWidth
+                                variant="standard"
+                                onChange={this.changeContent}
+                            />
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={this.closeDialog}>Cancel</Button>
+                            <Button onClick={this.addComment}>Submit</Button>
+                        </DialogActions>
+                    </Dialog>
                 </Box>
-                <Typography sx={{marginTop: "5px", marginLeft: "5px"}}><b>Born:</b> {actor.bornDate}</Typography>
-                <Typography sx={{marginTop: "5px", marginLeft: "5px"}}><b>Place:</b> {actor.bornPlace}</Typography>
-                <Typography sx={{marginTop: "5px", marginLeft: "5px"}}><b>Known For:</b> {actor.knownFor.join(' | ')}</Typography>
-                <Typography sx={{marginTop: "5px", marginLeft: "5px"}}><b>Alternate Names:</b> {actor.alternateNames.join(' | ')}</Typography>
-                <Typography sx={{marginTop: "5px", marginLeft: "5px"}}><b>Height:</b> {actor.height}</Typography>
-                <Typography sx={{marginTop: "5px", marginLeft: "5px"}}><b>Spouse:</b> {actor.spouse}</Typography>
+                </Box>
 
-                <Button variant="contained" color="success"
-                        sx={{width: "95%", display: "block", margin: "10px auto 0 auto"}}
-                        onClick={this.shareWithFriendsButton}
-                >Share with friends</Button>
-
-                <Typography sx={{marginTop: "20px"}} variant="h5">Description</Typography>
-                <Typography sx={{marginTop: "10px"}}>{actor.description}</Typography>
-            </Box>
         )
     }
 
@@ -234,6 +502,68 @@ class ActorDetails extends React.Component {
 
     shareWithFriendsButton = (event) => {
         console.log("share with friends")
+    }
+
+    addToFavorites = (event) => {
+        this.setState({
+            openAlert: true,
+            alterText: "Add To Favorites success!"
+        })
+    }
+
+    shareMovie = (event) => {
+        this.setState({
+            openAlert: true,
+            alterText: "Share Actors success!"
+        })
+    }
+
+    addComment = (event) => {
+        console.log(this.state.name)
+        console.log(this.state.content)
+        let temp = {
+            name: this.state.name,
+            avator: "http://pic.616pic.com/ys_bnew_img/00/10/83/54xXAJVRIn.jpg",
+            content: this.state.content
+        }
+        this.state.actors[this.state.actor].comment.push(temp)
+        this.state.actors[this.state.actor].conmentCount = this.state.actors[this.state.actor].conmentCount + 1
+        console.log(actors[this.state.actor])
+        this.setState({
+            openDialog: false
+        })
+    }
+
+    closeAlert = (event) => {
+        this.setState({
+            openAlert: false
+        })
+    }
+
+    openDialog = (event) => {
+        this.setState({
+            openDialog: true
+        })
+    }
+
+    closeDialog = (event) => {
+        this.setState({
+            openDialog: false
+        })
+    }
+
+    changeName = (event) => {
+        console.log(event.target.value)
+        this.setState({
+            name: event.target.value
+        })
+    }
+
+    changeContent = (event) => {
+        console.log(event.target.value)
+        this.setState({
+            content: event.target.value
+        })
     }
 }
 
