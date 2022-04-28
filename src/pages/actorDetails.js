@@ -454,7 +454,7 @@ class ActorDetails extends React.Component {
                         <DialogTitle>Add Comment</DialogTitle>
                         <DialogContent>
                             <DialogContentText>
-                                You can post your comment of the movie
+                                You can post your comment of the actor
                             </DialogContentText>
                             <TextField
                                 autoFocus
