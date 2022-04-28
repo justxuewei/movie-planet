@@ -6,6 +6,11 @@ import Avatar from '@mui/material/Avatar';
 import { FixedSizeList } from 'react-window';
 import { Box, TextField, Autocomplete} from "@mui/material";
 import Stack from '@mui/material/Stack';
+import {history} from 'umi'
+
+const jump = (value) => {
+    history.push('/actorDetails?actor=' + value)
+}
 
 function renderRow(props) {
     const { index, style, data } = props;
@@ -18,6 +23,7 @@ function renderRow(props) {
                     <Avatar alt="" src={data[index].avator} />
                 </ListItemAvatar>
                 <ListItemText
+                    onClick={() => jump(data[index].name)}
                     primary={data[index].name}
                     secondary={
                         <React.Fragment>

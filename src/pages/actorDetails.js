@@ -501,7 +501,10 @@ class ActorDetails extends React.Component {
     }
 
     shareWithFriendsButton = (event) => {
-        console.log("share with friends")
+        this.setState({
+            openAlert: true,
+            alterText: "Share Actors success!"
+        })
     }
 
     addToFavorites = (event) => {
